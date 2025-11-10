@@ -1,0 +1,35 @@
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: buildah
+allowPrivilegedContainer: false
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+readOnlyRootFilesystem: false
+defaultAddCapabilities: []
+requiredDropCapabilities: []
+allowedCapabilities:
+  - SETUID
+  - SETGID
+  - SYS_ADMIN
+  - MKNOD
+  - AUDIT_WRITE
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: MustRunAs
+fsGroup:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+users: []
+groups: []
+volumes:
+  - configMap
+  - emptyDir
+  - secret
+  - persistentVolumeClaim
+  - projected
